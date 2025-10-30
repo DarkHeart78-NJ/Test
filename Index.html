@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nabeel - Writer & Thinker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #56CCF2 0%, #2F80ED 50%, #00D4FF 100%);
+            color: #333;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(255, 235, 59, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 255, 200, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 200, 255, 0.2);
+            animation: fadeIn 1s ease;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+        }
+
+        h1 {
+            font-size: 3.5em;
+            background: linear-gradient(135deg, #00D4FF, #2F80ED, #00CBA9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 0 0 30px rgba(0, 200, 255, 0.3);
+        }
+
+        .tagline {
+            font-size: 1.3em;
+            color: #2F80ED;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0, 200, 255, 0.15);
+            animation: slideUp 0.8s ease;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 200, 255, 0.25);
+            border-color: rgba(0, 212, 255, 0.4);
+        }
+
+        h2 {
+            background: linear-gradient(135deg, #00CBA9, #00D4FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2em;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, #00D4FF, #00CBA9);
+            border-radius: 2px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, #E0F7FF 0%, #B3F0FF 100%);
+            padding: 25px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .about-card:hover {
+            transform: scale(1.05) rotate(-1deg);
+            box-shadow: 0 8px 25px rgba(0, 200, 255, 0.3);
+            background: linear-gradient(135deg, #B3F0FF 0%, #80E9FF 100%);
+        }
+
+        .about-card h3 {
+            color: #2F80ED;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .interests-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .interest-tag {
+            background: linear-gradient(135deg, #00CBA9 0%, #00D4FF 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: default;
+            box-shadow: 0 4px 15px rgba(0, 200, 255, 0.3);
+        }
+
+        .interest-tag:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 200, 255, 0.5);
+            background: linear-gradient(135deg, #00D4FF 0%, #00CBA9 100%);
+        }
+
+        .goals-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .goals-list li {
+            padding: 15px 20px;
+            margin: 10px 0;
+            background: linear-gradient(90deg, #E0F7FF 0%, #F0FFFF 100%);
+            border-left: 5px solid #00D4FF;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .goals-list li:hover {
+            background: linear-gradient(90deg, #B3F0FF 0%, #E0F7FF 100%);
+            padding-left: 30px;
+            box-shadow: 0 4px 15px rgba(0, 200, 255, 0.2);
+        }
+
+        .personality-traits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .trait {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #FFEB3B 0%, #FFC107 100%);
+            border-radius: 20px;
+            font-weight: 600;
+            color: #2F80ED;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+        }
+
+        .trait:hover {
+            transform: rotate(-3deg) scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            margin-top: 40px;
+            font-size: 1.1em;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.2em;
+            color: #2F80ED;
+            padding: 20px 25px;
+            border-left: 5px solid #00CBA9;
+            background: linear-gradient(90deg, #E0F7FF 0%, #F0FFFF 100%);
+            border-radius: 12px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 200, 255, 0.1);
+        }
+
+        .wave {
+            display: inline-block;
+            animation: wave 2s ease-in-out infinite;
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(20deg); }
+            75% { transform: rotate(-20deg); }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Nabeel <span class="wave">🌊</span></h1>
+            <p class="tagline">Writer. Thinker. Creator.</p>
+            <p class="tagline" style="font-size: 1em; margin-top: 5px;">📍 United Arab Emirates</p>
+        </header>
+
+        <div class="section">
+            <h2>About Me 🌟</h2>
+            <p style="font-size: 1.1em; line-height: 1.8; color: #555; margin-top: 15px;">
+                I'm a student who believes writing isn't just about putting words on paper—it's about making those words mean something. I dive deep into topics I care about, ask questions until things click, and mix creativity with logic to make my work stand out.
+            </p>
+            <div class="quote">
+                "I don't just want to memorize. I want to understand the why behind everything."
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Personality 🎨</h2>
+            <div class="personality-traits">
+                <div class="trait">🔍 Curious</div>
+                <div class="trait">🎨 Creative</div>
+                <div class="trait">💭 Thoughtful</div>
+                <div class="trait">🤝 Friendly</div>
+                <div class="trait">✨ Detail-Oriented</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>What I'm Into 🌊</h2>
+            <div class="interests-grid">
+                <div class="interest-tag">✍️ Writing</div>
+                <div class="interest-tag">🌍 Environment</div>
+                <div class="interest-tag">🕌 Religion & Culture</div>
+                <div class="interest-tag">💻 Technology</div>
+                <div class="interest-tag">📝 Sentence Flow</div>
+                <div class="interest-tag">🎯 Aesthetic Projects</div>
+                <div class="interest-tag">🧠 Deep Learning</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>My Strengths 💪</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>🎯 Question Asker</h3>
+                    <p>I don't stop until concepts are crystal clear. Curiosity drives me.</p>
+                </div>
+                <div class="about-card">
+                    <h3>💡 Original Thinker</h3>
+                    <p>I love bringing fresh ideas to schoolwork and making projects unique.</p>
+                </div>
+                <div class="about-card">
+                    <h3>🗣️ Tone Mixer</h3>
+                    <p>I naturally blend casual and formal styles to fit the moment.</p>
+                </div>
+                <div class="about-card">
+                    <h3>📈 Growth Mindset</h3>
+                    <p>Always open to feedback and improving my craft.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Goals & Motivations 🎯</h2>
+            <ul class="goals-list">
+                <li><strong>📝 Master Writing:</strong> Express ideas clearly and beautifully</li>
+                <li><strong>🌟 Stand Out:</strong> Make every project memorable and polished</li>
+                <li><strong>🧠 Learn Deeply:</strong> Understand concepts, not just memorize facts</li>
+                <li><strong>🔥 Pride in Work:</strong> Create things that sound right and feel clean</li>
+                <li><strong>⚖️ Balance Logic & Creativity:</strong> Combine both worlds effectively</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>My Style 🏄</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>🎯 Simple but Smart</h3>
+                    <p>No unnecessary complexity, but always intelligent.</p>
+                </div>
+                <div class="about-card">
+                    <h3>💬 Real, Not Robotic</h3>
+                    <p>Authentic voice that sounds human.</p>
+                </div>
+                <div class="about-card">
+                    <h3>✨ Modern & Meaningful</h3>
+                    <p>Contemporary with depth and purpose.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p style="font-size: 1.2em;">🌊 ✨ Always learning, always creating ✨ 🌊</p>
+        </footer>
+    </div>
+</body>
+</html>
